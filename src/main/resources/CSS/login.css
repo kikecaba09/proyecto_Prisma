@@ -71,38 +71,20 @@ nav ul li a:hover {
 
 .main-content {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 40px 60px;
     flex-grow: 1;
 }
 
-.welcome-section {
-    max-width: 45%;
-}
-
-.welcome-section h2 {
-    font-size: 36px;
-    color: #d9534f;
-    margin-bottom: 10px;
-}
-
-.welcome-section p {
-    font-size: 18px;
-    color: #555;
-    line-height: 1.5;
-}
-
-.welcome-section img {
-    width: 100%;
-    max-width: 400px;
-    margin-top: 20px;
-}
-
 .login-section {
-    max-width: 35%;
-    padding: 0;
-    font-size:15px
+    max-width: 400px;
+    width: 100%;
+    background-color: #fff;
+    padding: 40px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
 }
 
 .login-section h2 {
@@ -155,4 +137,37 @@ button {
 
 button:hover {
     background-color: #c9302c;
+}
+
+.register-link {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.register-link p {
+    font-size: 14px;
+}
+
+.register-link a {
+    color: #007BFF;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.register-link a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+    color: #888;
 }

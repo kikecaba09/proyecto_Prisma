@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>I.E.P. PRISMA - Iniciar Sesión</title>
+    <title>Iniciar Sesión - I.E.P. PRISMA</title>
     <link rel="stylesheet" href="/CSS/login.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
@@ -23,18 +23,13 @@
     </nav>
 </header>
 <div class="main-content">
-    <div class="welcome-section">
-        <h2>Bienvenido</h2>
-        <p>Accede a una plataforma dedicada para usuarios pertenecientes a nuestra institución</p>
-        <img src="/img/welcome-login.png" alt="Bienvenido">
-    </div>
     <div class="login-section">
         <h2>¡Hola!</h2>
         <p>Ingresa tus datos para <strong>iniciar sesión</strong>.</p>
-        <form action="login.php" method="post">
+        <form action="/loginAdmin" method="post">
             <div class="input-group">
                 <i class="material-icons">person</i>
-                <input type="text" name="codigo" placeholder="Ingresa tu código. Ej: U12320212" required>
+                <input type="text" name="id_admin" placeholder="Ingresa tu código de administrador" required>
             </div>
             <div class="input-group">
                 <i class="material-icons">lock</i>
@@ -42,7 +37,9 @@
             </div>
             <button type="submit">INICIAR SESIÓN</button>
         </form>
-        <p>¿No tienes cuenta? <a href="/HTML/administrador/registroAdministrador.html">Regístrate aquí</a></p>
+        <div class="register-link">
+            <p>¿No tienes cuenta? <a href="/HTML/administrador/registroAdministrador.html">Regístrate</a></p>
+        </div>
     </div>
 </div>
 </body>

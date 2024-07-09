@@ -28,7 +28,7 @@ public class RegistrarAdminServlet extends HttpServlet {
         if (adminDAO.registrarAdmin(adminDTO)) {
             response.sendRedirect("login.html"); // Página de éxito
         } else {
-            response.sendRedirect("registro_fallido.jsp"); // Página de error
+            response.sendRedirect("/HTML/login/login.html"); // Página de error
         }
     }
 }

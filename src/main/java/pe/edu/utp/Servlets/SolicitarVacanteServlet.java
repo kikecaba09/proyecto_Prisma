@@ -11,6 +11,12 @@ import java.io.IOException;
 
 @WebServlet("/solicitarVacante")
 public class SolicitarVacanteServlet extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doGet(req, resp);
+    }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

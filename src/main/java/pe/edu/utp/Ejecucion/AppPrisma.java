@@ -1,7 +1,6 @@
 package pe.edu.utp.Ejecucion;
 
-import pe.edu.utp.Servlets.RegistrarAdminServlet;
-import pe.edu.utp.Servlets.SolicitarVacanteServlet;
+import pe.edu.utp.Servlets.*;
 import pe.edu.utp.utils.JettyUTP;
 import java.net.URL;
 
@@ -12,6 +11,9 @@ public class AppPrisma {
         JettyUTP webserver = new JettyUTP(8080, path);
         webserver.addServlet(SolicitarVacanteServlet.class,"/solicitarVacante");
         webserver.addServlet(RegistrarAdminServlet.class,"/registrarAdmin");
+        webserver.addServlet(LoginAdminServlet.class,"/loginAdmin");
+        webserver.addServlet(ListarCursosServlet.class,"/listarCursos");
+        webserver.addServlet(RegistrarCursoServlet.class,"/registrarCurso");
 
 
         URL myURL = new URL("http://localhost:8080");
