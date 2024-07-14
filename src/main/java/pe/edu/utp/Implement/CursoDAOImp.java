@@ -1,6 +1,5 @@
 package pe.edu.utp.Implement;
 
-
 import pe.edu.utp.BaseDatos.ConexionBD;
 import pe.edu.utp.model.Curso;
 import pe.edu.utp.repository.CursoDAO;
@@ -35,7 +34,7 @@ public class CursoDAOImp implements CursoDAO {
             while (resultSet.next()) {
                 Curso curso = new Curso();
                 curso.setIdCurso(resultSet.getLong("id_course"));
-                curso.setNombre(resultSet.getString("namee"));
+                curso.setNombre(resultSet.getString("name"));
                 cursos.add(curso);
             }
         } catch (SQLException ex) {

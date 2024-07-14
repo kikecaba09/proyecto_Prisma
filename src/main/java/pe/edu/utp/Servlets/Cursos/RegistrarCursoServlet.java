@@ -1,4 +1,4 @@
-package pe.edu.utp.Servlets;
+package pe.edu.utp.Servlets.Cursos;
 
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -13,7 +13,7 @@ import java.io.IOException;
 public class RegistrarCursoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
-        String nombreCurso = request.getParameter("nombre");
+        String nombreCurso = request.getParameter("name");
 
         Curso curso = new Curso();
         curso.setNombre(nombreCurso);
@@ -21,6 +21,6 @@ public class RegistrarCursoServlet extends HttpServlet {
         CursoDAO cursoDAO = new CursoDAOImp();
         cursoDAO.agregarCurso(curso);
 
-        response.sendRedirect("ListarCursosServlet");
+        response.sendRedirect("/listarCursos");
     }
 }

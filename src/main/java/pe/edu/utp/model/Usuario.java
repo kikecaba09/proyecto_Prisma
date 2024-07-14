@@ -1,52 +1,62 @@
 package pe.edu.utp.model;
 
 public class Usuario {
-    private String name;
-    private String lastName;
-    private String birthDate;
+    private int id;
+    private String nombre;
+    private String apellido;
+    private String fechaNacimiento;
     private String dni;
     private String email;
-    private String phone;
-    private String type;
-    private String grade;
+    private String telefono;
+    private String tipo; // Tipo de usuario: POSTULANTE, ESTUDIANTE, etc.
+    private boolean activo;
 
-    public Usuario(String name, String lastName, String birthDate, String dni, String email,
-                   String phone, String type, String grade) {
-        this.name = name;
-        this.lastName = lastName;
-        this.birthDate = birthDate;
+    public Usuario(int id, String nombre, String apellido, String fechaNacimiento, String dni,
+                   String email, String telefono, String tipo, boolean activo) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.fechaNacimiento = fechaNacimiento;
         this.dni = dni;
         this.email = email;
-        this.phone = phone;
-        this.type = type;
-        this.grade = grade;
+        this.telefono = telefono;
+        this.tipo = tipo;
+        this.activo = activo;
     }
 
     public Usuario() {
     }
 
-    public String getName() {
-        return name;
+    public int getId() {
+        return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getBirthDate() {
-        return birthDate;
+    public String getApellido() {
+        return apellido;
     }
 
-    public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(String fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     public String getDni() {
@@ -65,41 +75,42 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
-    public String getType() {
-        return type;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
-    public String getGrade() {
-        return grade;
+    public boolean isActivo() {
+        return activo;
     }
 
-    public void setGrade(String grade) {
-        this.grade = grade;
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 
     @Override
     public String toString() {
         return "Usuario{" +
-                "name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", birthDate='" + birthDate + '\'' +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", fechaNacimiento='" + fechaNacimiento + '\'' +
                 ", dni='" + dni + '\'' +
                 ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", type='" + type + '\'' +
-                ", grade='" + grade + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", tipo='" + tipo + '\'' +
+                ", activo=" + activo +
                 '}';
     }
 }
