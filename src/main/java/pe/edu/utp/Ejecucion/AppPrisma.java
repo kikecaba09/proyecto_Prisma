@@ -2,6 +2,7 @@ package pe.edu.utp.Ejecucion;
 
 import pe.edu.utp.Servlets.Cursos.ListarCursosServlet;
 import pe.edu.utp.Servlets.Cursos.RegistrarCursoServlet;
+import pe.edu.utp.Servlets.Login.LoginServlet;
 import pe.edu.utp.Servlets.Vacantes.AceptarVacanteServlet;
 import pe.edu.utp.Servlets.Vacantes.ListarVacantesServlet;
 import pe.edu.utp.Servlets.Vacantes.SolicitarVacanteServlet;
@@ -14,6 +15,7 @@ public class AppPrisma {
 
         JettyUTP webserver = new JettyUTP(8080, path);
         webserver.addServlet(SolicitarVacanteServlet.class,"/solicitarVacante");
+        webserver.addServlet(LoginServlet.class,"/loginAdmin");
         webserver.addServlet(AceptarVacanteServlet.class,"/aceptarVacante");
         webserver.addServlet(ListarVacantesServlet.class,"/listarVacantes");
         webserver.addServlet(ListarCursosServlet.class,"/listarCursos");

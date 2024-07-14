@@ -12,9 +12,9 @@ import java.util.List;
 
 public class UsuarioDAOImpl implements UsuarioDAO {
 
-    private static final String INSERTAR_USUARIO_SQL = "CALL solicitar_vacante(?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String INSERTAR_USUARIO_SQL = "CALL solicitar_vacante(?, ?, ?, ?, ?,?)";
     private static final String ACTUALIZAR_TIPO_USUARIO_SQL = "CALL aceptar_vacante(?)";
-    private static final String OBTENER_USUARIOS_POR_TIPO_SQL = "SELECT * FROM usuario WHERE tipo = ?";
+    private static final String OBTENER_USUARIOS_POR_TIPO_SQL = "SELECT * FROM user WHERE type = ?";
 
     @Override
     public boolean insertarUsuario(Usuario usuario) {
@@ -27,8 +27,6 @@ public class UsuarioDAOImpl implements UsuarioDAO {
             preparedStatement.setString(4, usuario.getDni());
             preparedStatement.setString(5, usuario.getEmail());
             preparedStatement.setString(6, usuario.getTelefono());
-            preparedStatement.setString(7, usuario.getTipo());
-            preparedStatement.setBoolean(8, usuario.isActivo());
 
             int filasAfectadas = preparedStatement.executeUpdate();
             if (filasAfectadas > 0) {

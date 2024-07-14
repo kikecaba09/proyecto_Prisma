@@ -15,7 +15,7 @@ public class SolicitarVacanteServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
-        response.setContentType("text/html;charset=UTF-8");
+
         PrintWriter out = response.getWriter();
 
         String name = request.getParameter("name");
