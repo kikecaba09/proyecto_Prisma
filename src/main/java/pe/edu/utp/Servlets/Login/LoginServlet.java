@@ -9,7 +9,7 @@ import pe.edu.utp.repository.LoginDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/login")
+@WebServlet("/loginAdmin")
 public class LoginServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet {
         boolean autenticado = loginDAO.autenticarUsuario(profile, password);
 
         if (autenticado) {
-            response.sendRedirect("dashboardAdministrador.html");
+            response.sendRedirect("/HTML/administrador/dashboardAdmin.html");
         } else {
             out.println("Perfil o contraseña incorrectos. Intenta nuevamente.");
         }

@@ -3,10 +3,7 @@ package pe.edu.utp.Implement;
 import pe.edu.utp.BaseDatos.ConexionBD;
 import pe.edu.utp.model.Usuario;
 import pe.edu.utp.repository.UsuarioDAO;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,15 +39,14 @@ public class UsuarioDAOImpl implements UsuarioDAO {
     public boolean actualizarTipoUsuario(int idUsuario) {
         boolean exito = false;
         try (Connection conexion = ConexionBD.obtenerConexion();
-             PreparedStatement preparedStatement = conexion.prepareStatement(ACTUALIZAR_TIPO_USUARIO_SQL)) {
-            preparedStatement.setInt(1, idUsuario);
-
-            int filasAfectadas = preparedStatement.executeUpdate();
-            if (filasAfectadas > 0) {
-                exito = true;
-            }
+             CallableStatement callableStatement = conexion.prepareCall(ACTUALIZAR_TIPO_USUARIO_SQL)) {
+            System.out.println("Ejecutando procedimiento almacenado con id_user: " + idUsuario);
+            callableStatement.setInt(1, idUsuario);
+            callableStatement.execute();
+            exito = true;
         } catch (SQLException ex) {
             System.out.println("Error al actualizar el tipo de usuario: " + ex.getMessage());
+            ex.printStackTrace();
         }
         return exito;
     }
@@ -64,15 +60,14 @@ public class UsuarioDAOImpl implements UsuarioDAO {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     Usuario usuario = new Usuario();
-                    usuario.setId(resultSet.getInt("id"));
-                    usuario.setNombre(resultSet.getString("nombre"));
-                    usuario.setApellido(resultSet.getString("apellido"));
-                    usuario.setFechaNacimiento(resultSet.getString("fecha_nacimiento"));
+                    usuario.setNombre(resultSet.getString("name"));
+                    usuario.setApellido(resultSet.getString("last_name"));
+                    usuario.setFechaNacimiento(resultSet.getString("birth_date"));
                     usuario.setDni(resultSet.getString("dni"));
                     usuario.setEmail(resultSet.getString("email"));
-                    usuario.setTelefono(resultSet.getString("telefono"));
-                    usuario.setTipo(resultSet.getString("tipo"));
-                    usuario.setActivo(resultSet.getBoolean("activo"));
+                    usuario.setTelefono(resultSet.getString("phone"));
+                    usuario.setTipo(resultSet.getString("type"));
+                    usuario.setActivo(resultSet.getBoolean("active"));
                     listaUsuarios.add(usuario);
                 }
             }
