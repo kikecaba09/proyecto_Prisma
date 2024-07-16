@@ -60,6 +60,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     Usuario usuario = new Usuario();
+                    usuario.setId(resultSet.getInt("id_user"));
                     usuario.setNombre(resultSet.getString("name"));
                     usuario.setApellido(resultSet.getString("last_name"));
                     usuario.setFechaNacimiento(resultSet.getString("birth_date"));

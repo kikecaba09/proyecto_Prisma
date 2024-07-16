@@ -47,7 +47,9 @@ public class ListarVacantesServlet extends HttpServlet {
             out.println("<p>No hay vacantes solicitadas actualmente.</p>");
         } else {
             out.println("<table>");
-            out.println("<tr><th>Nombre</th><th>Apellido</th><th>Fecha de Nacimiento</th><th>DNI</th><th>Email</th><th>Teléfono</th><th>Tipo</th><th>Acción</th></tr>");
+            out.println("<tr><th>Nombre</th><th>Apellido</th><th>Fecha de Nacimiento</th>" +
+                    "<th>DNI</th><th>Email</th><th>Teléfono</th><th>Tipo</th>" +
+                    "<th>Acción</th></tr>");
 
             for (Usuario usuario : listaUsuarios) {
                 out.println("<tr>");
@@ -58,7 +60,7 @@ public class ListarVacantesServlet extends HttpServlet {
                 out.println("<td>" + usuario.getEmail() + "</td>");
                 out.println("<td>" + usuario.getTelefono() + "</td>");
                 out.println("<td>" + usuario.getTipo() + "</td>");
-                out.println("<td><a href='/aceptarVacante?id_user=" + usuario.getId() + "' class='btn'>Aceptar</a></td>");
+                out.println("<td><a href='/aceptarVacante?id_user=" + usuario.getId() + "' class='btn'>Aceptar Matricula</a></td>");
                 out.println("</tr>");
             }
 
