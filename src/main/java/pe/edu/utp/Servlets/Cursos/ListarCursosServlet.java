@@ -131,20 +131,24 @@ public class ListarCursosServlet extends HttpServlet {
             cursos = cursoDAO.listarCursos();
         }
 
-        // Construir tabla HTML con los cursos
-        out.println("<table border='1' id='tablaCursos'>");
-        out.println("<tr><th>ID del Curso</th><th>Nombre del Curso</th><th>Acciones</th></tr>");
-        for (Curso curso : cursos) {
-            out.println("<tr>");
-            out.println("<td>" + curso.getIdCurso() + "</td>");
-            out.println("<td>" + curso.getNombre() + "</td>");
-            out.println("<td>");
-            out.println("<button class='btn' onclick=\"mostrarModal('" + curso.getIdCurso() + "', '" + curso.getNombre() + "')\">Editar</button>");
-            out.println("<a href='/eliminarCurso?id=" + curso.getIdCurso() + "' class='btn' onclick='return confirm(\"¿Estás seguro de eliminar este curso?\")'>Eliminar</a>");
-            out.println("</td>");
-            out.println("</tr>");
+        if (cursos.isEmpty()) {
+            out.println("<p>No hay cursos disponibles actualmente.</p>");
+        }else {
+            // Construir tabla HTML con los cursos
+            out.println("<table border='1' id='tablaCursos'>");
+            out.println("<tr><th>ID del Curso</th><th>Nombre del Curso</th><th>Acciones</th></tr>");
+            for (Curso curso : cursos) {
+                out.println("<tr>");
+                out.println("<td>" + curso.getIdCurso() + "</td>");
+                out.println("<td>" + curso.getNombre() + "</td>");
+                out.println("<td>");
+                out.println("<button class='btn' onclick=\"mostrarModal('" + curso.getIdCurso() + "', '" + curso.getNombre() + "')\">Editar</button>");
+                out.println("<a href='/eliminarCurso?id=" + curso.getIdCurso() + "' class='btn' onclick='return confirm(\"¿Estás seguro de eliminar este curso?\")'>Eliminar</a>");
+                out.println("</td>");
+                out.println("</tr>");
+            }
+            out.println("</table>");
         }
-        out.println("</table>");
 
         // Botón para registrar nuevo curso
         out.println("<button class='btn' onclick='document.getElementById(\"modalRegistrar\").style.display=\"block\"'>Registrar nuevo curso</button>");

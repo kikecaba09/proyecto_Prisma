@@ -99,7 +99,7 @@ public class ListarDocente extends HttpServlet {
         out.println("}");
         out.println("</style>");
         out.println("<script>");
-        out.println("function mostrarModal(id, profile, password, speciality, name, last_name, birth_date, dni, email, phone, registration_date) {");
+        out.println("function mostrarModalEditar(id, profile, password, speciality, name, last_name, birth_date, dni, email, phone, registration_date) {");
         out.println("    document.getElementById('modalEditar').style.display = 'block';");
         out.println("    document.getElementById('editIdDocente').value = id;");
         out.println("    document.getElementById('editProfile').value = profile;");
@@ -113,9 +113,24 @@ public class ListarDocente extends HttpServlet {
         out.println("    document.getElementById('editPhone').value = phone;");
         out.println("    document.getElementById('editRegistrationDate').value = registration_date;");
         out.println("}");
+        out.println("function mostrarModalDetalles(id, profile, password, speciality, name, last_name, birth_date, dni, email, phone, registration_date) {");
+        out.println("    document.getElementById('modalDetalles').style.display = 'block';");
+        out.println("    document.getElementById('detailIdDocente').innerText = id;");
+        out.println("    document.getElementById('detailProfile').innerText = profile;");
+        out.println("    document.getElementById('detailPassword').innerText = password;");
+        out.println("    document.getElementById('detailSpeciality').innerText = speciality;");
+        out.println("    document.getElementById('detailNombre').innerText = name;");
+        out.println("    document.getElementById('detailApellido').innerText = last_name;");
+        out.println("    document.getElementById('detailFechaNacimiento').innerText = birth_date;");
+        out.println("    document.getElementById('detailDni').innerText = dni;");
+        out.println("    document.getElementById('detailEmail').innerText = email;");
+        out.println("    document.getElementById('detailPhone').innerText = phone;");
+        out.println("    document.getElementById('detailRegistrationDate').innerText = registration_date;");
+        out.println("}");
         out.println("function cerrarModal() {");
         out.println("    document.getElementById('modalRegistrar').style.display = 'none';");
         out.println("    document.getElementById('modalEditar').style.display = 'none';");
+        out.println("    document.getElementById('modalDetalles').style.display = 'none';");
         out.println("}");
         out.println("</script>");
         out.println("</head>");
@@ -139,106 +154,116 @@ public class ListarDocente extends HttpServlet {
             docentes = docenteDAO.listarDocentes();
         }
 
-        // Construir tabla HTML con los docentes
-        out.println("<table border='1' id='tablaDocentes'>");
-        out.println("<tr>");
-        out.println("<th>ID del Docente</th>");
-        out.println("<th>Perfil</th>");
-        out.println("<th>Contraseña</th>");
-        out.println("<th>Especialidad</th>");
-        out.println("<th>Nombre</th>");
-        out.println("<th>Apellido</th>");
-        out.println("<th>Fecha de Nacimiento</th>");
-        out.println("<th>DNI</th>");
-        out.println("<th>Email</th>");
-        out.println("<th>Teléfono</th>");
-        out.println("<th>Fecha de Registro</th>");
-        out.println("<th>Acciones</th>");
-        out.println("</tr>");
-
-        for (Docente docente : docentes) {
+        if (docentes.isEmpty()) {
+            out.println("<p>No hay docentes registrados actualmente</p>");
+        } else {
+            // Construir tabla HTML con los docentes
+            out.println("<table border='1' id='tablaDocentes'>");
             out.println("<tr>");
-            out.println("<td>" + docente.getIdDocente() + "</td>");
-            out.println("<td>" + docente.getProfile() + "</td>");
-            out.println("<td>" + docente.getPassword() + "</td>");
-            out.println("<td>" + docente.getSpeciality() + "</td>");
-            out.println("<td>" + docente.getNombre() + "</td>");
-            out.println("<td>" + docente.getApellido() + "</td>");
-            out.println("<td>" + docente.getFechaNacimiento() + "</td>");
-            out.println("<td>" + docente.getDni() + "</td>");
-            out.println("<td>" + docente.getEmail() + "</td>");
-            out.println("<td>" + docente.getTelefono() + "</td>");
-            out.println("<td>" + docente.getFechaRegistro() + "</td>");
-            out.println("<td>");
-            out.println("<button class='btn' onclick=\"mostrarModal('" + docente.getIdDocente() + "', '" + docente.getProfile() + "', '" + docente.getPassword() + "', '" + docente.getSpeciality() + "', '" + docente.getNombre() + "', '" + docente.getApellido() + "', '" + docente.getFechaNacimiento() + "', '" + docente.getDni() + "', '" + docente.getEmail() + "', '" + docente.getTelefono() + "', '" + docente.getFechaRegistro() + "')\">Editar</button>");
-            out.println("<a href='/eliminarDocente?id_teacher=" + docente.getIdDocente() + "' class='btn' onclick='return confirm(\"¿Estás seguro de eliminar este docente?\")'>Eliminar</a>");
-            out.println("</td>");
+            out.println("<th>ID del Docente</th>");
+            out.println("<th>Nombre</th>");
+            out.println("<th>Apellido</th>");
+            out.println("<th>Email</th>");
+            out.println("<th>Teléfono</th>");
+            out.println("<th>Acciones</th>");
             out.println("</tr>");
+
+            for (Docente docente : docentes) {
+                out.println("<tr>");
+                out.println("<td>" + docente.getIdDocente() + "</td>");
+                out.println("<td>" + docente.getNombre() + "</td>");
+                out.println("<td>" + docente.getApellido() + "</td>");
+                out.println("<td>" + docente.getEmail() + "</td>");
+                out.println("<td>" + docente.getTelefono() + "</td>");
+                out.println("<td>");
+                out.println("<button class='btn' onclick=\"mostrarModalEditar('" + docente.getIdDocente() + "', '" + docente.getProfile() + "', '" + docente.getPassword() + "', '" + docente.getSpeciality() + "', '" + docente.getNombre() + "', '" + docente.getApellido() + "', '" + docente.getFechaNacimiento() + "', '" + docente.getDni() + "', '" + docente.getEmail() + "', '" + docente.getTelefono() + "', '" + docente.getFechaNacimiento() + "')\">Editar</button>");
+                out.println("<button class='btn' onclick=\"mostrarModalDetalles('" + docente.getIdDocente() + "', '" + docente.getProfile() + "', '" + docente.getPassword() + "', '" + docente.getSpeciality() + "', '" + docente.getNombre() + "', '" + docente.getApellido() + "', '" + docente.getFechaNacimiento() + "', '" + docente.getDni() + "', '" + docente.getEmail() + "', '" + docente.getTelefono() + "', '" + docente.getFechaNacimiento() + "')\">Ver detalles</button>");
+                out.println("<button class='btn' onclick=\"window.location.href='/eliminarDocente?id=" + docente.getIdDocente() + "'\">Eliminar</button>");
+                out.println("</td>");
+                out.println("</tr>");
+            }
+            out.println("</table>");
         }
-        out.println("</table>");
 
-        // Botón para registrar nuevo docente
-        out.println("<button class='btn' onclick='document.getElementById(\"modalRegistrar\").style.display=\"block\"'>Registrar nuevo docente</button>");
+        out.println("<button class='btn' onclick=\"document.getElementById('modalRegistrar').style.display='block'\">Registrar nuevo docente</button>");
 
-        // Ventana modal para registrar nuevo docente
+        // Modal de registrar docente
         out.println("<div id='modalRegistrar' class='modal'>");
         out.println("<div class='modal-content'>");
         out.println("<span class='close' onclick='cerrarModal()'>&times;</span>");
-        out.println("<h2>Registrar Nuevo Docente</h2>");
+        out.println("<h2>Registrar Docente</h2>");
         out.println("<form action='/registrarDocente' method='post'>");
-        out.println("<label class='form-label'>ID del Docente:</label><br>");
-        out.println("<input type='text' name='id_teacher' class='form-input'><br>");
-        out.println("<label class='form-label'>Contraseña:</label><br>");
-        out.println("<input type='password' name='password' class='form-input'><br>");
-        out.println("<label class='form-label'>Perfil:</label><br>");
-        out.println("<input type='text' name='profile' class='form-input'><br>");
-        out.println("<label class='form-label'>Especialidad:</label><br>");
-        out.println("<input type='text' name='speciality_name' class='form-input'><br>");
-        out.println("<label class='form-label'>Nombre:</label><br>");
-        out.println("<input type='text' name='name' class='form-input'><br>");
-        out.println("<label class='form-label'>Apellido:</label><br>");
-        out.println("<input type='text' name='last_name' class='form-input'><br>");
-        out.println("<label class='form-label'>Fecha de Nacimiento:</label><br>");
-        out.println("<input type='date' name='birth_date' class='form-input'><br>");
-        out.println("<label class='form-label'>DNI:</label><br>");
-        out.println("<input type='text' name='dni' class='form-input'><br>");
-        out.println("<label class='form-label'>Email:</label><br>");
-        out.println("<input type='email' name='email' class='form-input'><br>");
-        out.println("<label class='form-label'>Teléfono:</label><br>");
-        out.println("<input type='text' name='phone' class='form-input'><br>");
+        out.println("<label for='profile' class='form-label'>Perfil</label>");
+        out.println("<input type='text' id='profile' name='profile' class='form-input' required>");
+        out.println("<label for='password' class='form-label'>Contraseña</label>");
+        out.println("<input type='password' id='password' name='password' class='form-input' required>");
+        out.println("<label for='speciality' class='form-label'>Especialidad</label>");
+        out.println("<input type='text' id='speciality' name='speciality' class='form-input' required>");
+        out.println("<label for='nombre' class='form-label'>Nombre</label>");
+        out.println("<input type='text' id='nombre' name='nombre' class='form-input' required>");
+        out.println("<label for='apellido' class='form-label'>Apellido</label>");
+        out.println("<input type='text' id='apellido' name='apellido' class='form-input' required>");
+        out.println("<label for='fechaNacimiento' class='form-label'>Fecha de Nacimiento</label>");
+        out.println("<input type='date' id='fechaNacimiento' name='fechaNacimiento' class='form-input' required>");
+        out.println("<label for='dni' class='form-label'>DNI</label>");
+        out.println("<input type='text' id='dni' name='dni' class='form-input' required>");
+        out.println("<label for='email' class='form-label'>Email</label>");
+        out.println("<input type='email' id='email' name='email' class='form-input' required>");
+        out.println("<label for='telefono' class='form-label'>Teléfono</label>");
+        out.println("<input type='text' id='telefono' name='telefono' class='form-input' required>");
         out.println("<input type='submit' value='Registrar' class='btn'>");
         out.println("</form>");
         out.println("</div>");
         out.println("</div>");
 
-        // Ventana modal para editar docente
+        // Modal de editar docente
         out.println("<div id='modalEditar' class='modal'>");
         out.println("<div class='modal-content'>");
         out.println("<span class='close' onclick='cerrarModal()'>&times;</span>");
         out.println("<h2>Editar Docente</h2>");
-        out.println("<form action='/actualizarDocente' method='post'>");
-        out.println("<input type='hidden' id='editIdDocente' name='id_teacher'>");
-        out.println("<label class='form-label'>Perfil:</label><br>");
-        out.println("<input type='text' id='editProfile' name='profile' class='form-input'><br>");
-        out.println("<label class='form-label'>Contraseña:</label><br>");
-        out.println("<input type='password' id='editPassword' name='password' class='form-input'><br>");
-        out.println("<label class='form-label'>Especialidad:</label><br>");
-        out.println("<input type='text' id='editSpeciality' name='speciality_name' class='form-input'><br>");
-        out.println("<label class='form-label'>Nombre:</label><br>");
-        out.println("<input type='text' id='editNombre' name='name' class='form-input'><br>");
-        out.println("<label class='form-label'>Apellido:</label><br>");
-        out.println("<input type='text' id='editApellido' name='last_name' class='form-input'><br>");
-        out.println("<label class='form-label'>Fecha de Nacimiento:</label><br>");
-        out.println("<input type='date' id='editFechaNacimiento' name='birth_date' class='form-input'><br>");
-        out.println("<label class='form-label'>DNI:</label><br>");
-        out.println("<input type='text' id='editDni' name='dni' class='form-input'><br>");
-        out.println("<label class='form-label'>Email:</label><br>");
-        out.println("<input type='email' id='editEmail' name='email' class='form-input'><br>");
-        out.println("<label class='form-label'>Teléfono:</label><br>");
-        out.println("<input type='text' id='editPhone' name='phone' class='form-input'><br>");
-        out.println("<input type='hidden' id='editRegistrationDate' name='registration_date'>");
-        out.println("<input type='submit' value='Actualizar' class='btn'>");
+        out.println("<form action='/editarDocente' method='post'>");
+        out.println("<input type='hidden' id='editIdDocente' name='idDocente'>");
+        out.println("<label for='editProfile' class='form-label'>Perfil</label>");
+        out.println("<input type='text' id='editProfile' name='profile' class='form-input' required>");
+        out.println("<label for='editPassword' class='form-label'>Contraseña</label>");
+        out.println("<input type='password' id='editPassword' name='password' class='form-input' required>");
+        out.println("<label for='editSpeciality' class='form-label'>Especialidad</label>");
+        out.println("<input type='text' id='editSpeciality' name='speciality' class='form-input' required>");
+        out.println("<label for='editNombre' class='form-label'>Nombre</label>");
+        out.println("<input type='text' id='editNombre' name='nombre' class='form-input' required>");
+        out.println("<label for='editApellido' class='form-label'>Apellido</label>");
+        out.println("<input type='text' id='editApellido' name='apellido' class='form-input' required>");
+        out.println("<label for='editFechaNacimiento' class='form-label'>Fecha de Nacimiento</label>");
+        out.println("<input type='date' id='editFechaNacimiento' name='fechaNacimiento' class='form-input' required>");
+        out.println("<label for='editDni' class='form-label'>DNI</label>");
+        out.println("<input type='text' id='editDni' name='dni' class='form-input' required>");
+        out.println("<label for='editEmail' class='form-label'>Email</label>");
+        out.println("<input type='email' id='editEmail' name='email' class='form-input' required>");
+        out.println("<label for='editPhone' class='form-label'>Teléfono</label>");
+        out.println("<input type='text' id='editPhone' name='telefono' class='form-input' required>");
+        out.println("<label for='editRegistrationDate' class='form-label'>Fecha de Registro</label>");
+        out.println("<input type='date' id='editRegistrationDate' name='registrationDate' class='form-input' required>");
+        out.println("<input type='submit' value='Guardar Cambios' class='btn'>");
         out.println("</form>");
+        out.println("</div>");
+        out.println("</div>");
+
+        // Modal de detalles del docente
+        out.println("<div id='modalDetalles' class='modal'>");
+        out.println("<div class='modal-content'>");
+        out.println("<span class='close' onclick='cerrarModal()'>&times;</span>");
+        out.println("<h2>Detalles del Docente</h2>");
+        out.println("<p><strong>ID del Docente:</strong> <span id='detailIdDocente'></span></p>");
+        out.println("<p><strong>Perfil:</strong> <span id='detailProfile'></span></p>");
+        out.println("<p><strong>Contraseña:</strong> <span id='detailPassword'></span></p>");
+        out.println("<p><strong>Especialidad:</strong> <span id='detailSpeciality'></span></p>");
+        out.println("<p><strong>Nombre:</strong> <span id='detailNombre'></span></p>");
+        out.println("<p><strong>Apellido:</strong> <span id='detailApellido'></span></p>");
+        out.println("<p><strong>Fecha de Nacimiento:</strong> <span id='detailFechaNacimiento'></span></p>");
+        out.println("<p><strong>DNI:</strong> <span id='detailDni'></span></p>");
+        out.println("<p><strong>Email:</strong> <span id='detailEmail'></span></p>");
+        out.println("<p><strong>Teléfono:</strong> <span id='detailPhone'></span></p>");
+        out.println("<p><strong>Fecha de Registro:</strong> <span id='detailRegistrationDate'></span></p>");
         out.println("</div>");
         out.println("</div>");
 
