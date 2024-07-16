@@ -72,7 +72,7 @@ Para consultas o sugerencias, puedes contactar a los desarrolladores a través d
 - Redes Sociales:
   - LinkedIn de Víctor Enrique Cabanillas Rojas: [linkedin.com/in/victorcabanillas](https://linkedin.com/in/victorcabanillas)
   - LinkedIn de Mery Condori: [linkedin.com/in/merycondori](https://linkedin.com/in/merycondori)
-  - LinkedIn de Marcio Alessandro De La Cruz Capuñay: [linkedin.com/in/alessandro-de-la-cruz-capu%C3%B1ay-b4944129a/?jobid=1234](https://www.linkedin.com/in/alessandro-de-la-cruz-capu%C3%B1ay-b4944129a/?jobid=1234)
+  - LinkedIn de Marcio Alessandro De La Cruz Capuñay: [linkedin.com/in/alessandro-de-la-cruz-capuñay](https://www.linkedin.com/in/alessandro-de-la-cruz-capu%C3%B1ay-b4944129a/?jobid=1234)
   - LinkedIn de Juan Sánchez Pisfil: [linkedin.com/in/juansanchez](https://linkedin.com/in/juansanchez)
 
 ---
